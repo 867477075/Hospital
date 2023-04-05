@@ -1,9 +1,13 @@
 import json
-from dal.dml import authenticate,insert_data
+from dal.dml import authenticate,insert_data,get_data
 from flask import Flask ,render_template,request,Response
+from Appointment.appointment_module import blue_print
+from doctor_module.Doctor_Module import doctor_object
 
 app = Flask(__name__) # Flask Entry point
 
+app.register_blueprint(blue_print)
+app.register_blueprint(doctor_object)
 
 @app.route('/ganesh')
 def shree_ganesh():
@@ -29,9 +33,8 @@ def login_done():
     result = authenticate(request_data.get("username"), request_data.get("password"))
 
     if result == 1:
-        response_obj = {
-        "message": "Login Successfully"}
-        return Response(json.dumps(response_obj))
+        result = get_data()
+        return render_template("AdminProfile.html",data=result)
     else:
         response_obj = {
             "message": "Login Not Successfully"}

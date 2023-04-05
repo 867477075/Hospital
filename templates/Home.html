@@ -10,10 +10,16 @@
 <header>
     <nav>
     <ul>
-  <li><a class="active" href="#home">Home</a></li>
-  <li><a href="#news">News</a></li>
+
   <li><a href="#contact">Contact</a></li>
-  <li><a href="{{ url_for( 'my_admin' ) }}">Admin</a></li>
+        <li><a href="{{ url_for('appointment.register_for_appointment')}}">Appointment</a></li>
+
+        <li> <a href="{{ url_for('doctor_object.doctor_login') }}">Doctor Login </a></li>
+  <li> <a href="{{ url_for('my_admin') }}">Admin Login</a></li>
+        <li><a class="active" href="#home">Home</a></li>
+
+
+
 </ul>
 
 

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="static/style.css">
+  <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+<title> Appointment Form </title>
+</head>
+<body class="adminbody">
+    <div class="login-page">
+      <div class="form">
+        <div class="login">
+          <div class="login-header">
+            <h3>Appointment Registration</h3>
+            <p>Please fill below details for the schedule appointment.</p>
+          </div>
+        </div>
+        <form action="{{url_for('appointment.register')}}" class="login-form" method="post">
+          <label for="doctor_choice">Select Doctor from the list </label>
+          <select id ="doctor_choice" name="doctor_choice">
+            {% for Name in data %}
+            <option >{{ Name }} </option>
+            {% endfor %}
+
+          </select>
+          <br>
+          <br>
+          <input type="text" placeholder="first name" name="first_name" required/>
+          <input type="text" placeholder="last name" name="last_name" required/>
+          <input type="date" placeholder="DOB" name="date_" required/>
+          <input type="text" placeholder="Address" name="address"  />
+          <button  type="submit"  value="submit">Schedule Appointment</button>
+          <br>
+
+        </form>
+      </div>
+    </div>
+
+</body>
+</html>
+
+
+

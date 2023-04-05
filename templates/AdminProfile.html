@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin_profile</title>
+</head>
+<body>
+<table>
+  <tr>
+    <th>Patient Name</th>
+    <th>Doctors Name</th>
+  </tr>
+  <tr>
+      {% for x in data %}
+    <td>{{ x[0] }}</td>
+      <td>{{ x[1] }}</td>
+</tr>
+      {% endfor %}
+
+</table>
+
+
+
+
+
+</body>
+</html>
