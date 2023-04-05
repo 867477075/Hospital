@@ -20,17 +20,17 @@ def register_doctor():
 def push_data_into_db():
     request_data = request.form
     breakpoint()
-    data_column = [x for x in request_data if x != "psw"]
-    data_value = [y for x,y in request_data.items() if x != "psw" ]
+    data_column = [x for x in request_data]
+    data_value = [y for y in request_data.values()]
     result = insert_data("doctor_table", data_column, data_value)
     if result == 1:
         response_obj = {
-            "massage": "Your request for an appointment added successfully"
+            "massage": "Registration done  successfully"
         }
         return Response(json.dumps(response_obj))
     else:
         response_obj = {
-            "massage": "There was problem in request Please wait and try later"
+            "massage": "There was problem in registration"
         }
         return Response(json.dumps(response_obj))
 
@@ -41,9 +41,11 @@ def doctor_login_done():
 
     result = authenticate("doctor_table",request_data.get("username"), request_data.get("password"))
 
+    user_name = request_data.get("username")
     if result == 1:
-        result = get_data()
-        return render_template("AdminProfile.html",data=result)
+        data = get_data(user_name)
+        breakpoint()
+        return render_template("doctor_profile.html",data=data,username=user_name)
     else:
         response_obj = {
             "message": "Login Not Successfully"}

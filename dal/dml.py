@@ -21,12 +21,14 @@ def insert_data(table_name,data_keys,data_values):
     conn.commit()
     return result
 
-def get_data():
+def get_data(username):
     conn = get_db_connection()
     cursor = conn.cursor()
-    sql = """select a.first_name ,d.doctor_name from appointment a
- inner join doctor_table d on a.id=d.doctor_id;"""
+    breakpoint()
+    sql = f"""select first_name ,last_name ,doctor_name ,date_,address 
+    from hospital.appointment where id=(select doctor_id from hospital.doctor_table where email_id = '{username}');"""
     cursor.execute(sql)
+    breakpoint()
     result = cursor.fetchall()
     return result
 
